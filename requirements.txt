@@ -9,3 +9,6 @@ ripgrep
 nodejs
 npm
 bat
+kitty
+tmux
+neovim
