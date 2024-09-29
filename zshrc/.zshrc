@@ -1,3 +1,13 @@
+fastfetch
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if [ -f "/home/sharjeelm/anaconda3/bin/conda" ]; then
+    eval "$(/home/sharjeelm/anaconda3/bin/conda shell.zsh hook)"
+fi
+# <<< conda initialize <<<
+export LIBVIRT_DEFAULT_URI='qemu:///system'
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
