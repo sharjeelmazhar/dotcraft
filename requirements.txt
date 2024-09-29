@@ -1,0 +1,11 @@
+fzf
+lsd
+zoxide
+git
+zsh
+ttf-cascadia-code-nerd
+xclip
+ripgrep
+nodejs
+npm
+bat
