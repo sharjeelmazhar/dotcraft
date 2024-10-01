@@ -32,17 +32,28 @@ vim.keymap.set("n", "<Right>", "<Nop>")
 -- Telescope
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>of", ":Telescope oldfiles<CR>", { desc = "Telescope find old files" })
-vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>lg", ":Telescope live_grep<CR>", { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>fh", ":Telescope help_tags<CR>", { desc = "Telescope help tags" })
+vim.keymap.set("n", "<leader>fht", ":Telescope help_tags<CR>", { desc = "Telescope help tags" })
 vim.keymap.set("n", "<leader>lp", ":Telescope lsp_document_symbols<CR>", { desc = "Telescope lsp document symbols" })
 
 -- lsp
-vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+-- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+-- vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, {})
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+
+-- bashbunni and tj
+
+vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+vim.keymap.set("n", "<leader>gt", vim.lsp.buf.type_definition, {})
+vim.keymap.set("n", "<leader>gi", vim.lsp.buf.implementation, {})
+vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, {})
+vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, {})
+vim.keymap.set("n", "<leader>td", "<cmd>Telescope diagnostics<cr>", {})
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
 
 -- git stuff
 vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
@@ -70,3 +81,22 @@ vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = t
 
 -- Move to the previous buffer
 vim.api.nvim_set_keymap("n", "<S-TAB>", ":bprevious<CR>", { noremap = true, silent = true })
+
+-- Toggleterm
+-- vim.keymap.set("n", "<C-/>", ":ToggleTerm<CR>", { desc = "Open/close terminal" })
+-- vim.keymap.set("n", "<C-,>", "<Cmd>ToggleTerm<CR>", {})
+
+-- theprimeagen keymaps
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("x", "<leader>p", '"_dP')
+-- vim.keymap.set("n", "<leader>y", '"+y')
+-- vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
