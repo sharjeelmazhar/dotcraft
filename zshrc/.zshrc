@@ -90,7 +90,17 @@ alias vim='nvim'
 alias c='clear'
 
 # Shell integrations
-eval "$(fzf --zsh)"
+# Check if the system is not Ubuntu
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    if [ "$ID" != "ubuntu" ]; then
+        # For non-Ubuntu systems
+        eval "$(fzf --zsh)"
+    fi
+else
+    # If /etc/os-release is not found, assume non-Ubuntu
+    eval "$(fzf --zsh)"
+fi
 eval "$(zoxide init --cmd cd zsh)"
 
 # setting up tmuxifier
