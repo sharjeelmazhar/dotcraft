@@ -22,7 +22,8 @@ require("lazy").setup({
         { import = "plugins" },
     },
     checker = { enabled = true },
+    install = { colorscheme = { "andromeda" } },
 })
 
-vim.cmd.colorscheme "andromeda"
+vim.cmd.colorscheme("andromeda")
 --vim.cmd.colorscheme "catppuccin-mocha"
