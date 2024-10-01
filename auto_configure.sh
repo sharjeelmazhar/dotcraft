@@ -1,6 +1,16 @@
+
 #!/bin/bash
 
 set -e
+
+# Color definitions
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Function to print messages in green
+print_success() {
+    echo -e "${GREEN}$1${NC}"
+}
 
 # Error handler function
 error_exit() {
@@ -19,7 +29,7 @@ else
     exit 1
 fi
 
-echo "Detected distro: $DISTRO"
+print_success "Detected distro: $DISTRO"
 
 # Define package manager and update command based on distro
 case "$DISTRO" in
@@ -87,7 +97,7 @@ case "$DISTRO" in
             "zoxide"
             "bat"
             "stow"
-            # 'lsd' is not available in default repositories; handled separately
+            "lsd"
             "kitty"
             "fastfetch"
         )
@@ -100,11 +110,10 @@ esac
 
 # Function to add PPAs on Ubuntu
 add_ubuntu_ppas() {
-    echo "Adding necessary PPAs..."
+    print_success "Adding necessary PPAs..."
     sudo apt install -y software-properties-common
     sudo add-apt-repository ppa:neovim-ppa/stable -y
-    sudo add-apt-repository ppa:aslatter/ppa -y  # For lsd
-    sudo add-apt-repository ppa:kovidgoyal/kitty -y
+    sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y  # For fastfetch
     $UPDATE_CMD
 }
 
@@ -113,17 +122,17 @@ if [ "$DISTRO" == "ubuntu" ]; then
 fi
 
 # Update package lists
-echo "Updating package lists..."
+print_success "Updating package lists..."
 $UPDATE_CMD
 
 # Install packages
-echo "Installing packages..."
+print_success "Installing packages..."
 for package in "${PACKAGES[@]}"; do
     case "$DISTRO" in
         ubuntu)
             case "$package" in
                 bat)
-                    echo "Installing bat..."
+                    print_success "Installing bat..."
                     $PKG_MANAGER bat
 
                     # Create an alias for bat
@@ -131,24 +140,16 @@ for package in "${PACKAGES[@]}"; do
                         sudo ln -s /usr/bin/batcat /usr/local/bin/bat
                     fi
 
-                    echo "Alias 'bat' created for 'batcat'"
-                    ;;
-                kitty)
-                    echo "Installing kitty..."
-                    $PKG_MANAGER kitty
-                    ;;
-                lsd)
-                    echo "Installing lsd..."
-                    $PKG_MANAGER lsd
+                    print_success "Alias 'bat' created for 'batcat'"
                     ;;
                 *)
-                    echo "Installing $package..."
+                    print_success "Installing $package..."
                     $PKG_MANAGER $package
                     ;;
             esac
             ;;
         *)
-            echo "Installing $package..."
+            print_success "Installing $package..."
             $PKG_MANAGER $package
             ;;
     esac
@@ -156,47 +157,46 @@ done
 
 # Install Cascadia Code Nerd Font
 if [ -n "$FONT_PACKAGE" ]; then
-    echo "Installing font package: $FONT_PACKAGE"
+    print_success "Installing font package: $FONT_PACKAGE"
     $PKG_MANAGER $FONT_PACKAGE
 else
-    echo "Font package not available via package manager. Installing Cascadia Code Nerd Font manually..."
-
+    print_success "Installing Cascadia Code Nerd Font manually..."
     FONTS_DIR="$HOME/.fonts"
     mkdir -p "$FONTS_DIR"
 
     # Download the font files
-    FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip"
-    wget -O "$FONTS_DIR/CascadiaCode.zip" "$FONT_URL"
+    FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip"
+    wget "$FONT_URL" -O CascadiaCode.zip
 
     # Verify the download
-    if [ ! -f "$FONTS_DIR/CascadiaCode.zip" ]; then
+    if [ ! -f "CascadiaCode.zip" ]; then
         echo "Failed to download Cascadia Code font."
         exit 1
     fi
 
     # Unzip the font files
-    unzip -o "$FONTS_DIR/CascadiaCode.zip" -d "$FONTS_DIR"
+    unzip -o "CascadiaCode.zip" -d "$FONTS_DIR"
 
     # Remove the zip file
-    rm "$FONTS_DIR/CascadiaCode.zip"
+    rm "CascadiaCode.zip"
 
     # Refresh font cache
     sudo fc-cache -fv
 
-    echo "Fonts installed."
+    print_success "Fonts installed."
 fi
 
-# Change directory to ~/dotfiles and run 'stow .'
+# Change directory to ~/dotfiles and run 'stow'
 DOTFILES_DIR="$HOME/dotfiles"
 
 if [ -d "$DOTFILES_DIR" ]; then
-    echo "Changing directory to $DOTFILES_DIR"
+    print_success "Changing directory to $DOTFILES_DIR"
     cd "$DOTFILES_DIR"
 
-    echo "Running 'stow .' to create symbolic links..."
+    print_success "Running 'stow' to create symbolic links..."
     stow zshrc kitty nvim tmux fastfetch tmuxifier
 
-    echo "Dotfiles have been stowed successfully."
+    print_success "Dotfiles have been stowed successfully."
 else
     echo "Directory $DOTFILES_DIR does not exist"
     exit 1
@@ -205,10 +205,14 @@ fi
 # Install Tmux Plugin Manager (tpm)
 TPM_DIR="$HOME/.tmux/plugins/tpm"
 if [ ! -d "$TPM_DIR" ]; then
-    echo "Cloning Tmux Plugin Manager to $TPM_DIR"
+    print_success "Cloning Tmux Plugin Manager to $TPM_DIR"
     git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
 else
-    echo "Tmux Plugin Manager already installed at $TPM_DIR"
+    print_success "Tmux Plugin Manager already installed at $TPM_DIR"
 fi
 
-echo "Setup complete."
+# Change default shell to zsh
+print_success "Changing default shell to zsh..."
+chsh -s $(which zsh)
+
+print_success "Setup complete."
