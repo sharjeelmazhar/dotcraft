@@ -112,7 +112,6 @@ esac
 add_ubuntu_ppas() {
     print_success "Adding necessary PPAs..."
     sudo apt install -y software-properties-common
-    sudo add-apt-repository ppa:neovim-ppa/stable -y
     sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y  # For fastfetch
     $UPDATE_CMD
 }
