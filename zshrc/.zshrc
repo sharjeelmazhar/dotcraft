@@ -8,6 +8,8 @@ fi
 # <<< conda initialize <<<
 export LIBVIRT_DEFAULT_URI='qemu:///system'
 
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -90,3 +92,7 @@ alias c='clear'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# setting up tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
