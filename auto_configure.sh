@@ -37,18 +37,18 @@ install_packages() {
             PKG_MANAGER="sudo pacman -S --noconfirm --needed"
             UPDATE_CMD="sudo pacman -Sy --noconfirm"
             FONT_PACKAGE="ttf-cascadia-code-nerd"
-            PACKAGES=("fzf" "lsd" "zoxide" "git" "zsh" "xclip" "ripgrep" "nodejs" "npm" "bat" "kitty" "tmux" "stow" "fastfetch" "neovim" "$FONT_PACKAGE")
+            PACKAGES=("fzf" "lsd" "unzip" "less" "zoxide" "git" "zsh" "xclip" "ripgrep" "nodejs" "npm" "bat" "kitty" "tmux" "stow" "fastfetch" "neovim" "$FONT_PACKAGE")
             ;;
         fedora)
             PKG_MANAGER="sudo dnf install -y"
             UPDATE_CMD="sudo dnf update -y"
             FONT_PACKAGE="cascadia-code-nf-fonts"
-            PACKAGES=("fzf" "lsd" "zoxide" "git" "zsh" "xclip" "ripgrep" "nodejs" "npm" "bat" "kitty" "tmux" "stow" "fastfetch" "neovim" "$FONT_PACKAGE")
+            PACKAGES=("fzf" "lsd" "zoxide" "unzip" "less" "git" "zsh" "xclip" "ripgrep" "nodejs" "npm" "bat" "kitty" "tmux" "stow" "fastfetch" "neovim" "$FONT_PACKAGE")
             ;;
         ubuntu)
             PKG_MANAGER="sudo apt install -y"
             UPDATE_CMD="sudo apt update"
-            PACKAGES=("fzf" "lsd" "zoxide" "git" "zsh" "xclip" "ripgrep" "nodejs" "npm" "bat" "kitty" "tmux" "stow")
+            PACKAGES=("fzf" "lsd" "zoxide" "unzip" "less" "git" "zsh" "xclip" "ripgrep" "nodejs" "npm" "bat" "kitty" "tmux" "stow")
 
             print_success "Adding necessary PPAs for Ubuntu..."
             sudo apt install -y software-properties-common
