@@ -86,7 +86,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='lsd'
-alias vim='nvim'
 alias c='clear'
 
 # Shell integrations
@@ -110,3 +109,5 @@ eval "$(tmuxifier init -)"
 
 eval "$(ssh-agent -s)" > /dev/null 2>&1
 ssh-add ~/.ssh/github_sm > /dev/null 2>&1
+
+alias fnr='cat .zsh_history | fzf | xargs -I {} zsh -c {}'
