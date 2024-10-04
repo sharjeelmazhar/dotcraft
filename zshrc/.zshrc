@@ -106,3 +106,7 @@ eval "$(zoxide init --cmd cd zsh)"
 # setting up tmuxifier
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
+
+
+eval "$(ssh-agent -s)" > /dev/null 2>&1
+ssh-add ~/.ssh/github_sm > /dev/null 2>&1
