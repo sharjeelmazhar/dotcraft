@@ -23,6 +23,12 @@ vim.keymap.set("n", "<Down>", "<Nop>", { desc = "Disable Down arrow key" })
 vim.keymap.set("n", "<Left>", "<Nop>", { desc = "Disable Left arrow key" })
 vim.keymap.set("n", "<Right>", "<Nop>", { desc = "Disable Right arrow key" })
 
+-- Disable arrow keys in visual mode
+vim.keymap.set("v", "<Up>", "<Nop>", { desc = "Disable Up arrow key" })
+vim.keymap.set("v", "<Down>", "<Nop>", { desc = "Disable Down arrow key" })
+vim.keymap.set("v", "<Left>", "<Nop>", { desc = "Disable Left arrow key" })
+vim.keymap.set("v", "<Right>", "<Nop>", { desc = "Disable Right arrow key" })
+
 -- Telescope
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files using Telescope" })
 vim.keymap.set("n", "<leader>of", ":Telescope oldfiles<CR>", { desc = "Find old files using Telescope" })
@@ -123,3 +129,5 @@ vim.keymap.set("n", "<leader>va", function()
     -- Reset the pytest options after running
     vim.cmd("let test#python#pytest#options = ''")
 end, { desc = "Run test suite with verbose output" })
+
+vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
