@@ -61,24 +61,24 @@ vim.keymap.set("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { desc = "Navigate u
 vim.keymap.set("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { desc = "Navigate right in Tmux" })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function()
-        vim.lsp.buf.format()
-    end,
+	pattern = "*",
+	callback = function()
+		vim.lsp.buf.format()
+	end,
 })
 
 -- Indent selected lines and keep visual mode active
 vim.api.nvim_set_keymap(
-    "v",
-    "<",
-    "<gv",
-    { noremap = true, silent = true, desc = "Indent left and stay in visual mode" }
+	"v",
+	"<",
+	"<gv",
+	{ noremap = true, silent = true, desc = "Indent left and stay in visual mode" }
 )
 vim.api.nvim_set_keymap(
-    "v",
-    ">",
-    ">gv",
-    { noremap = true, silent = true, desc = "Indent right and stay in visual mode" }
+	"v",
+	">",
+	">gv",
+	{ noremap = true, silent = true, desc = "Indent right and stay in visual mode" }
 )
 
 -- Move to the next buffer
@@ -86,10 +86,10 @@ vim.api.nvim_set_keymap("n", "<TAB>", ":bnext<CR>", { noremap = true, silent = t
 
 -- Move to the previous buffer
 vim.api.nvim_set_keymap(
-    "n",
-    "<S-TAB>",
-    ":bprevious<CR>",
-    { noremap = true, silent = true, desc = "Move to previous buffer" }
+	"n",
+	"<S-TAB>",
+	":bprevious<CR>",
+	{ noremap = true, silent = true, desc = "Move to previous buffer" }
 )
 
 -- Toggle terminal
@@ -103,14 +103,14 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Search next and center" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Search previous and center" })
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without overwriting register" })
+vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Paste without overwriting register" })
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 vim.keymap.set(
-    "n",
-    "<leader>s",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Search and replace current word" }
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Search and replace current word" }
 )
 
 -- Keybindings for vim-test
@@ -122,12 +122,12 @@ vim.keymap.set("n", "<leader>g", ":TestVisit<CR>", { desc = "Visit last test run
 
 -- Keybinding to run with verbose flag
 vim.keymap.set("n", "<leader>va", function()
-    -- Temporarily set the pytest options to include -v
-    vim.cmd("let test#python#pytest#options = '-v'")
-    -- Run the test suite
-    vim.cmd("TestSuite")
-    -- Reset the pytest options after running
-    vim.cmd("let test#python#pytest#options = ''")
+	-- Temporarily set the pytest options to include -v
+	vim.cmd("let test#python#pytest#options = '-v'")
+	-- Run the test suite
+	vim.cmd("TestSuite")
+	-- Reset the pytest options after running
+	vim.cmd("let test#python#pytest#options = ''")
 end, { desc = "Run test suite with verbose output" })
 
 vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
