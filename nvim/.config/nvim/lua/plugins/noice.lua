@@ -10,8 +10,13 @@ return {
 		require("noice").setup({
 			routes = {
 				{
-					view = "notify",
-					filter = { event = "msg_showmode" },
+					view = "notify", -- The view to use for notifications
+					filter = { event = "msg_showmode" }, -- Filter for the event
+				},
+				{
+					view = "notify", -- The view to use for notifications
+					filter = { event = "msg_showmode", kind = "mode_change" }, -- Filter out mode change notifications
+					opts = { skip = true }, -- Skip displaying these notifications
 				},
 			},
 			lsp = {
@@ -27,19 +32,6 @@ return {
 				long_message_to_split = true,
 				inc_rename = false,
 				lsp_doc_border = false,
-			},
-			cmdline = {
-				enabled = true, -- Ensure cmdline is enabled
-				view = "cmdline", -- Use the default cmdline view
-				opts = {
-					position = { relative = "editor", row = 0.5, col = 0.5 }, -- Center the popup
-					size = { width = 50, height = 1 }, -- Set size as needed
-					border = {
-						style = "rounded", -- You can use "rounded", "solid", "none", etc.
-						highlight = "FloatBorder", -- Highlight group for the border
-					},
-					title = "Command Line", -- Title for the popup
-				},
 			},
 		})
 	end,
