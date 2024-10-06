@@ -110,4 +110,5 @@ eval "$(tmuxifier init -)"
 eval "$(ssh-agent -s)" > /dev/null 2>&1
 ssh-add ~/.ssh/github_sm > /dev/null 2>&1
 
-alias fnr='cat .zsh_history | fzf | xargs -I {} zsh -c {}'
+# alias fnr='cat .zsh_history | fzf | xargs -I {} zsh -c {}'
+alias fnr='cat ~/.zsh_history | sed "s/^: [0-9]*:[0-9]*;//" | fzf | xargs -I {} zsh -c {}'

@@ -3,15 +3,16 @@ vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 -- Enable relative line numbers
 vim.opt.relativenumber = true -- Show line numbers relative to the cursor position
-vim.opt.number = true         -- Show absolute line numbers
+vim.opt.number = true -- Show absolute line numbers
 
 -- Configure indentation settings
 vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.tabstop = 4      -- Set the number of spaces a tab counts for
-vim.opt.shiftwidth = 4   -- Set the number of spaces used for each step of (auto)indent
+vim.opt.tabstop = 4 -- Set the number of spaces a tab counts for
+vim.opt.shiftwidth = 4 -- Set the number of spaces used for each step of (auto)indent
 
 -- Disable line wrapping
-vim.opt.wrap = false -- Prevent lines from wrapping to the next line
+vim.opt.wrap = true -- Prevent lines from wrapping to the next line
+vim.opt.linebreak = true -- Break lines at convenient points
 
 -- Highlight the line where the cursor is located
 vim.opt.cursorline = true -- Enable highlighting of the current line
@@ -21,7 +22,7 @@ vim.opt.scrolloff = 10 -- Number of lines to keep above and below the cursor whe
 
 -- Configure search behavior
 vim.opt.ignorecase = true -- Ignore case when searching
-vim.opt.smartcase = true  -- Override 'ignorecase' if search contains uppercase letters
+vim.opt.smartcase = true -- Override 'ignorecase' if search contains uppercase letters
 
 -- Enable mouse support in all modes
 vim.o.mouse = "a" -- Allow mouse usage in all modes (normal, visual, insert, etc.)

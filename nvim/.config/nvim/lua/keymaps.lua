@@ -46,6 +46,7 @@ vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, { desc = "Format current b
 vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Show references" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Show code actions" })
 vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+vim.keymap.set("n", "<leader>dc", vim.diagnostic.open_float, { desc = "Open floating diagnostic" })
 vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
 vim.keymap.set("n", "<leader>td", "<cmd>Telescope diagnostics<cr>", { desc = "List diagnostics using Telescope" })
 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })

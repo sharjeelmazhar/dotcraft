@@ -51,7 +51,7 @@ return {
 
 						-- Refresh the picker to reflect the updated list
 						current_picker:refresh(finder())
-					end)
+					end, { desc = "delete file from harpoon telescope" })
 					return true
 				end,
 			})
@@ -62,26 +62,26 @@ return {
 		-- Select specific files from Harpoon
 		vim.keymap.set("n", "<leader>a", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
-		end)
+		end, { desc = "Toggle harpoon quick menu" })
 
 		-- Keymap to toggle the Telescope picker for Harpoon
 		vim.keymap.set("n", "<C-E>", function()
 			toggle_telescope(harpoon:list())
-		end, { desc = "Open harpoon window" })
+		end, { desc = "Open harpoon telescope" })
 
 		-- Select specific files from Harpoon
 		for i = 1, 4 do
 			vim.keymap.set("n", "<C-" .. i .. ">", function()
 				harpoon:list():select(i)
-			end)
+			end, { desc = "Select ith file in harpoon" })
 		end
 
 		-- Toggle previous & next buffers stored within Harpoon list
 		vim.keymap.set("i", "<hh>", function()
 			harpoon:list():prev()
-		end)
+		end, { desc = "Next file in harpoon" })
 		vim.keymap.set("i", "<ll>", function()
 			harpoon:list():next()
-		end)
+		end, { desc = "Prev file in harpoon" })
 	end,
 }
