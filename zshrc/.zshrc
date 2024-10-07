@@ -112,3 +112,20 @@ ssh-add ~/.ssh/github_sm > /dev/null 2>&1
 
 # alias fnr='cat .zsh_history | fzf | xargs -I {} zsh -c {}'
 alias fnr='cat ~/.zsh_history | sed "s/^: [0-9]*:[0-9]*;//" | fzf | xargs -I {} zsh -c {}'
+
+
+# Function to set Snap path if on Ubuntu
+set_snap_path() {
+    # Check if the OS is Ubuntu
+    if [[ "$OSTYPE" == "linux-gnu" ]] && grep -q "Ubuntu" /etc/os-release; then
+        # echo "Detected Ubuntu. Setting up Snap path."
+        # Add Snap to PATH
+        export PATH="$PATH:/snap/bin"
+        # echo "Snap path set: $PATH"
+    else
+        # echo "Not Ubuntu. No action required."
+    fi
+}
+
+# Call the function when the terminal opens
+set_snap_path
