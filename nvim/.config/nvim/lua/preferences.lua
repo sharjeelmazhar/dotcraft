@@ -33,3 +33,10 @@ vim.opt.updatetime = 50 -- Time in milliseconds for triggering events, e.g., Cur
 -- Optional settings (uncomment to enable)
 -- vim.opt.colorcolumn = "79"    -- Set a color column at 79 characters (useful for line length limit)
 -- vim.opt.clipboard = "unnamedplus" -- Use the system clipboard for all operations
+
+-- -- Enable showing whitespace characters
+vim.opt.list = true
+--
+-- -- Set the characters for tabs and spaces
+-- -- vim.opt.listchars = { tab = "→ ", space = "·" }
+vim.opt.listchars = { space = "·" }
